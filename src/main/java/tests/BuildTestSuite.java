@@ -30,7 +30,7 @@ public class BuildTestSuite implements MobileCapabilityType {
             }
         }
 
-        String platformName = System.getProperty("platformName").toUpperCase();
+        String platformName = System.getenv("platformName").toUpperCase();
         if (platformName == null) {
             throw new IllegalArgumentException("[ERROR] Please supply -DplatformName in commandline/IDE");
         }
@@ -45,7 +45,7 @@ public class BuildTestSuite implements MobileCapabilityType {
         DeviceList deviceList = DataObjectBuilder.buildDataObject(deviceListJsonPath, DeviceList.class);
         List<Device> androidDeviceList = deviceList.getAndroidDeviceList();
         List<Device> iosDeviceList = deviceList.getIosDeviceList();
-        List<Device> deviceListByPlatform = platformName.equals(platformName) ? androidDeviceList : iosDeviceList;
+        List<Device> deviceListByPlatform = platformName.equals("ANDROID") ? androidDeviceList : iosDeviceList;
 
         int testNumberEachDevice = testClasses.size() / deviceListByPlatform.size();
         Map<Device, List<Class<?>>> deviceTestClassesMap = new HashMap<>();
