@@ -45,7 +45,7 @@ public class BuildTestSuite implements MobileCapabilityType {
         DeviceList deviceList = DataObjectBuilder.buildDataObject(deviceListJsonPath, DeviceList.class);
         List<Device> androidDeviceList = deviceList.getAndroidDeviceList();
         List<Device> iosDeviceList = deviceList.getIosDeviceList();
-        List<Device> deviceListByPlatform = platformName.equals("ANDROID") ? androidDeviceList : iosDeviceList;
+        List<Device> deviceListByPlatform = platformName.equals(platformName) ? androidDeviceList : iosDeviceList;
 
         int testNumberEachDevice = testClasses.size() / deviceListByPlatform.size();
         Map<Device, List<Class<?>>> deviceTestClassesMap = new HashMap<>();
