@@ -45,7 +45,7 @@ public class BaseTest {
     }
 
     public AppiumDriver getDriver() {
-        return currentDriverThread.get().getDriver(Platform.valueOf(platformName.toUpperCase()), platformVersion, udid, systemPort);
+        return currentDriverThread.get().getDriver(Platform.valueOf(platformName), platformVersion, udid, systemPort);
     }
 
     @AfterMethod

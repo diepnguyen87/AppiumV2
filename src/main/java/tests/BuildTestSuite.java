@@ -30,7 +30,7 @@ public class BuildTestSuite implements MobileCapabilityType {
             }
         }
 
-        String platformName = System.getProperty("platformName").toUpperCase();
+        String platformName = System.getenv("platformName").toUpperCase();
         if (platformName == null) {
             throw new IllegalArgumentException("[ERROR] Please supply -DplatformName in commandline/IDE");
         }

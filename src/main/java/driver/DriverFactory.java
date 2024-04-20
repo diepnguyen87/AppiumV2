@@ -15,7 +15,7 @@ public class DriverFactory implements MobileCapabilityType, AppPackages {
 
     private AppiumDriver driver;
 
-    public AppiumDriver getDriver(Platform platformName, String platformVerion, String udid, String systemPort) {
+    public AppiumDriver getDriver(Platform platformName, String platformVersion, String udid, String systemPort) {
 
         DesiredCapabilities caps = new DesiredCapabilities();
         if (driver == null) {
@@ -37,7 +37,6 @@ public class DriverFactory implements MobileCapabilityType, AppPackages {
                     throw new IllegalArgumentException("[ERROR] Please input an environment or property variable [url] in commandline/IDE");
                 }
             }
-
             URL appiumServer = null;
             try {
                 appiumServer = new URL(targetURL);
@@ -46,9 +45,12 @@ public class DriverFactory implements MobileCapabilityType, AppPackages {
             }
 
             caps.setCapability(PLATFORM_NAME, platformName);
+            if (!platformVersion.equals("platformVersion")) {
+                caps.setCapability(PLATFORM_VERION, platformVersion);
+            }
+
             switch (platformName) {
                 case ANDROID -> {
-                    caps.setCapability(PLATFORM_VERION, platformVerion);
                     caps.setCapability(UDID, udid);
                     caps.setCapability(AUTOMATION_NAME, "uiautomator2");
                     caps.setCapability(APP_PACKAGE, AppPackages.WDIO);
@@ -57,7 +59,6 @@ public class DriverFactory implements MobileCapabilityType, AppPackages {
                     driver = new AndroidDriver(appiumServer, caps);
                 }
                 case IOS -> {
-                    caps.setCapability(PLATFORM_VERION, platformVerion);
                     caps.setCapability(AUTOMATION_NAME, "xcuitest");
                     caps.setCapability(DEVICE_NAME, udid);
                     caps.setCapability(BUNDLE_ID, "org.wdioNativeDemoApp");
@@ -109,13 +110,14 @@ public class DriverFactory implements MobileCapabilityType, AppPackages {
         return driver;
     }
 
-    public void resetApp(String platformName){
+    public void resetApp(String platformName) {
         InteractsWithApps interactDriver = ((InteractsWithApps) driver);
         Capabilities caps = driver.getCapabilities();
-        String appName = Platform.valueOf(platformName) == Platform.ANDROID ?  caps.getCapability(APP_PACKAGE).toString() : caps.getCapability(BUNDLE_ID).toString();
+        String appName = Platform.valueOf(platformName) == Platform.ANDROID ? caps.getCapability(APP_PACKAGE).toString() : caps.getCapability(BUNDLE_ID).toString();
         interactDriver.terminateApp(appName);
         interactDriver.activateApp(appName);
     }
+
     public void quitAppiumSession() {
         if (driver != null) {
             driver.quit();
