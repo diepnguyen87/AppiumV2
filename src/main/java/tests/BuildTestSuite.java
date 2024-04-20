@@ -30,7 +30,7 @@ public class BuildTestSuite implements MobileCapabilityType {
             }
         }
 
-        String platformName = System.getenv("platformName").toUpperCase();
+        String platformName = System.getProperty("platformName").toUpperCase();
         if (platformName == null) {
             throw new IllegalArgumentException("[ERROR] Please supply -DplatformName in commandline/IDE");
         }
@@ -75,7 +75,7 @@ public class BuildTestSuite implements MobileCapabilityType {
 
             test.setClasses(xmlClasses);
             test.addParameter(PLATFORM_NAME, platformName);
-            test.addParameter(PLATFORM_VERION, device.getPlatformVersion());
+            test.addParameter(PLATFORM_VERSION, device.getPlatformVersion());
             test.addParameter(UDID, device.getDeviceName());
             test.addParameter(SYSTEM_PORT, new SecureRandom().nextInt(1000) + 7000 + "");
             allTest.add(test);

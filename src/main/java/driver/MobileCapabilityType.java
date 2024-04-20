@@ -3,7 +3,7 @@ package driver;
 public interface MobileCapabilityType {
 
     String PLATFORM_NAME = "platformName";
-    String PLATFORM_VERION = "platformVersion";
+    String PLATFORM_VERSION = "platformVersion";
     String UDID = "udid";
     String DEVICE_NAME = "deviceName";
     String AUTOMATION_NAME = "automationName";

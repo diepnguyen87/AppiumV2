@@ -46,7 +46,7 @@ public class DriverFactory implements MobileCapabilityType, AppPackages {
 
             caps.setCapability(PLATFORM_NAME, platformName);
             if (!platformVersion.equals("platformVersion")) {
-                caps.setCapability(PLATFORM_VERION, platformVersion);
+                caps.setCapability(PLATFORM_VERSION, platformVersion);
             }
 
             switch (platformName) {
@@ -95,7 +95,7 @@ public class DriverFactory implements MobileCapabilityType, AppPackages {
             }
             case IOS -> {
                 caps.setCapability(PLATFORM_NAME, "ios");
-                caps.setCapability(PLATFORM_VERION, "");
+                caps.setCapability(PLATFORM_VERSION, "");
                 caps.setCapability(DEVICE_NAME, "");
                 caps.setCapability(BUNDLE_ID, "org.wdioNativeDemoApp");
                 caps.setCapability(AUTOMATION_NAME, "xcuitest");
