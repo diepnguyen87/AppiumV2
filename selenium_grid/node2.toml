@@ -9,5 +9,5 @@ detect-drivers = false
 url = "http://localhost:4733"
 status-endpoint = "/status"
 configs = [
-    "1", "{\"appium:deviceName\": \"192.168.0.102:44547\", \"platformName\": \"android\", \"appium:platformVersion\": \"14\", \"appium:automationName\": \"UiAutomator2\"}"
+    "1", "{\"appium:deviceName\": \"192.168.0.103:37175\", \"platformName\": \"android\", \"appium:platformVersion\": \"14\", \"appium:automationName\": \"uiautomator2\"}"
 ]
