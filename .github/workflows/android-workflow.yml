@@ -1,36 +1,43 @@
-android-native:
-  name: Android Native App
+name: Android Native CI
 
-  runs-on:
-    - self-hosted
-    - macOS
-    - mobile
-    - appium
+on:
+  workflow_dispatch:
 
-  defaults:
-    run:
-      working-directory: AppiumV2
+jobs:
+  android-native:
+    name: Android Native App
 
-  steps:
-    - uses: actions/checkout@v4
+    runs-on:
+      - self-hosted
+      - macOS
+      - mobile
+      - appium
 
-    - name: Setup Java
-      uses: actions/setup-java@v4
-      with:
-        distribution: temurin
-        java-version: 17
+    steps:
+      - uses: actions/checkout@v4
 
-    - name: Verify device
-      run: adb devices
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
 
-    - name: Verify Appium
-      run: curl http://127.0.0.1:4723/status
+      - name: Verify Android Device
+        run: |
+          adb devices
+          DEVICE_COUNT=$(adb devices | awk 'NR > 1 && $2 == "device" {count++} END {print count+0}')
+          if [ "$DEVICE_COUNT" -eq 0 ]; then
+            echo "❌ No Android device connected."
+            exit 1
+          fi
+          echo "✅ Found $DEVICE_COUNT Android device(s)"
 
-    - name: Run Android Tests
-      run: |
-        mvn clean test \
-          -DisRemote=false \
-          -DtestSuite=src/main/resources/Regression.xml \
-          -Dudid=${{ vars.ANDROID_UDID }} \
-          -DplatformName=${{ vars.PLATFORM_NAME }} \
-          -DsystemPort=${{ vars.ANDROID_SYSTEM_PORT }}
+      - name: Verify Appium
+        run: curl http://127.0.0.1:4723/status
+
+      - name: Run Android Tests
+        run: |
+          mvn clean test \
+            -DisRemote=false \
+            -DtestSuite=src/main/resources/Regression.xml \
+            -Dudid=${{ vars.ANDROID_UDID }}
