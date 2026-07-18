@@ -1,0 +1,36 @@
+android-native:
+  name: Android Native App
+
+  runs-on:
+    - self-hosted
+    - macOS
+    - mobile
+    - appium
+
+  defaults:
+    run:
+      working-directory: AppiumV2
+
+  steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: 17
+
+    - name: Verify device
+      run: adb devices
+
+    - name: Verify Appium
+      run: curl http://127.0.0.1:4723/status
+
+    - name: Run Android Tests
+      run: |
+        mvn clean test \
+          -DisRemote=false \
+          -DtestSuite=src/main/resources/Regression.xml \
+          -Dudid=${{ vars.ANDROID_UDID }} \
+          -DplatformName=${{ vars.PLATFORM_NAME }} \
+          -DsystemPort=${{ vars.ANDROID_SYSTEM_PORT }}

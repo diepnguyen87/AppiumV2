@@ -16,7 +16,7 @@ public class LoginFormCompModel3 {
     private By invalidPasswordMsgSel = AppiumBy.xpath("//android.widget.TextView[@text=\"Please enter at least 8 characters\"]");
     private By loginSel = AppiumBy.accessibilityId("button-LOGIN");
 
-    private By alertTitleSel = AppiumBy.id("android:id/alertTitle");
+    private By alertTitleSel = AppiumBy.id("com.wdiodemoapp:id/alert_title");
 
     private By alertMsgSel = AppiumBy.id("android:id/message");
 
