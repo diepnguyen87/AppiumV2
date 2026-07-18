@@ -10,8 +10,7 @@ jobs:
     runs-on:
       - self-hosted
       - macOS
-      - mobile
-      - appium
+      - ARM64
 
     steps:
       - uses: actions/checkout@v4
