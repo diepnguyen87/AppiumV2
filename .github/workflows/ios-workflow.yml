@@ -30,3 +30,9 @@ jobs:
             -DisRemote=false \
             -DtestSuite=src/main/resources/Regression.xml \
             -Dudid=${{ vars.IOS_UDID }}
+
+      - name: Upload allure results
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-allure-results
+          path: target/allure-results
