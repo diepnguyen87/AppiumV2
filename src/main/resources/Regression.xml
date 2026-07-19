@@ -5,26 +5,17 @@
            <listener class-name="retry.RetryListener"/>
        </listeners>
    -->
-<!--    <test name="Authentication">-->
-<!--        <parameter name="platformName" value="android"/>-->
-<!--        <parameter name="udid" value="${udid}"/>-->
-<!--        <parameter name="systemPort" value="7001"/>-->
-<!--        <classes>-->
-<!--            <class name="tests.authentication.TestLogin"/>-->
-<!--            <class name="tests.authentication.TestLoginWithBaseTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-
-  <!--  <test name="Webview">
+    <test name="Authentication">
         <parameter name="platformName" value="android"/>
-        <parameter name="udid" value="192.168.0.103:37175"/>
-        <parameter name="systemPort" value="8000"/>
+        <parameter name="udid" value="${udid}"/>
+        <parameter name="systemPort" value="7001"/>
         <classes>
-            <class name="tests.webview.HydridContext"/>
-            <class name="tests.swipe.SwipeHorizontal"/>
+            <class name="tests.authentication.TestLogin"/>
+            <class name="tests.authentication.TestLoginWithBaseTest"/>
         </classes>
-    </test>-->
-    <test name="Authentication" >
+    </test>
+
+    <test name="Webview" >
         <parameter name="platformName" value="ios" />
         <parameter name="platformVersion" value="16.4" />
         <parameter name="udid" value="${udid}" />
@@ -34,5 +25,4 @@
             <class name="tests.swipe.SwipeHorizontal"/>
         </classes>
     </test>
-
 </suite>
