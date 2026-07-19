@@ -60,8 +60,8 @@ public class DriverFactory implements MobileCapabilityType, AppPackages {
                 }
                 case IOS -> {
                     caps.setCapability(AUTOMATION_NAME, "xcuitest");
-                    caps.setCapability(DEVICE_NAME, udid);
-                    caps.setCapability(BUNDLE_ID, "org.wdioNativeDemoApp");
+                    caps.setCapability(UDID, udid);
+                    caps.setCapability(BUNDLE_ID, AppPackages.BUNDLEID);
                     caps.setCapability(WDA_LOCAL_PORT, systemPort);
                     driver = new IOSDriver(appiumServer, caps);
                 }

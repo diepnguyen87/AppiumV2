@@ -26,7 +26,12 @@ public class HydridContext extends BaseTest {
         explicitWait.until(new WaitMoreThanOneContext(driver));
 
         SupportsContextSwitching contextSwitchingDriver = (SupportsContextSwitching) driver;
-        contextSwitchingDriver.context(Context.WEBVIEW);
+        String webViewContext = contextSwitchingDriver.getContextHandles()
+                .stream()
+                .filter(context -> context.startsWith("WEBVIEW"))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No WebView context found"));
+        contextSwitchingDriver.context(webViewContext);
 
         driver.findElement(By.cssSelector(".navbar__toggle")).click();
         List<WebElement> menuItemList = driver.findElements(By.cssSelector("li.menu__list-item a.menu__link"));

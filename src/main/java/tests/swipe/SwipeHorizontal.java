@@ -28,7 +28,11 @@ public class SwipeHorizontal extends BaseTest {
         driver.findElement(AppiumBy.accessibilityId(("Swipe"))).click();
 
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().textContains(\"Swipe horizontal\")")));
+        if (platformName.equals("Android")) {
+            explicitWait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().textContains(\"Swipe horizontal\")")));
+        } else {
+            explicitWait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.iOSNsPredicateString("name='Swipe horizontal'")));
+        }
 
         Dimension dimension = driver.manage().window().getSize();
         int deviceHeight = dimension.getHeight();

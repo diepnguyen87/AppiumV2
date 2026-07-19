@@ -5,15 +5,15 @@
            <listener class-name="retry.RetryListener"/>
        </listeners>
    -->
-    <test name="Authentication">
-        <parameter name="platformName" value="android"/>
-        <parameter name="udid" value="${udid}"/>
-        <parameter name="systemPort" value="7001"/>
-        <classes>
-            <class name="tests.authentication.TestLogin"/>
-            <class name="tests.authentication.TestLoginWithBaseTest"/>
-        </classes>
-    </test>
+<!--    <test name="Authentication">-->
+<!--        <parameter name="platformName" value="android"/>-->
+<!--        <parameter name="udid" value="${udid}"/>-->
+<!--        <parameter name="systemPort" value="7001"/>-->
+<!--        <classes>-->
+<!--            <class name="tests.authentication.TestLogin"/>-->
+<!--            <class name="tests.authentication.TestLoginWithBaseTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
   <!--  <test name="Webview">
         <parameter name="platformName" value="android"/>
@@ -24,14 +24,15 @@
             <class name="tests.swipe.SwipeHorizontal"/>
         </classes>
     </test>-->
-    <!--<test name="Authentication" >
+    <test name="Authentication" >
         <parameter name="platformName" value="ios" />
-        <parameter name="platformVersion" value="15.0" />
-        <parameter name="udid" value="iPhone 15" />
-        <parameter name="systemPort" value="wda_local_port" />
+        <parameter name="platformVersion" value="16.4" />
+        <parameter name="udid" value="${udid}" />
+        <parameter name="systemPort" value="8100" />
         <classes>
-            <class name="tests.authentication.TestLoginWithBaseTest" />
+            <class name="tests.webview.HydridContext"/>
+            <class name="tests.swipe.SwipeHorizontal"/>
         </classes>
-    </test>-->
+    </test>
 
 </suite>

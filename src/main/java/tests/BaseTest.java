@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -61,11 +62,14 @@ public class BaseTest {
             String takenTime = year + "-" + month + "-" + date + "-" + hour + "-" + mins + "-" + second;
 
             String fileName = result.getName() + "_" + takenTime + ".png";
-            String tartgetPath = System.getProperty("user.dir").concat("/screenshot/").concat(fileName);
+            Path screenshotDir = Paths.get(System.getProperty("user.dir"), "screenshot");
+
             try {
+                Files.createDirectories(screenshotDir);
+                String targetPath = screenshotDir.resolve(fileName).toString();
                 File sourceFile = getDriver().getScreenshotAs(OutputType.FILE);
-                com.google.common.io.Files.copy(sourceFile, new File(tartgetPath));
-                InputStream is = Files.newInputStream(Paths.get(tartgetPath));
+                com.google.common.io.Files.copy(sourceFile, new File(targetPath));
+                InputStream is = Files.newInputStream(Paths.get(targetPath));
                 Allure.attachment(result.getName(), is);
             } catch (IOException e) {
                 throw new RuntimeException(e);
