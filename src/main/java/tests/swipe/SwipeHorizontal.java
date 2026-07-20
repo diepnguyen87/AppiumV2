@@ -31,7 +31,7 @@ public class SwipeHorizontal extends BaseTest {
         if (platformName.equalsIgnoreCase("Android")) {
             explicitWait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().textContains(\"Swipe horizontal\")")));
         } else {
-            explicitWait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.iOSNsPredicateString("name='Swipe horizontal'")));
+            explicitWait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.iOSNsPredicateString("name=='Swipe horizontal'")));
         }
 
         Dimension dimension = driver.manage().window().getSize();

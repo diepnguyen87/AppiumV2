@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class LoginFormCompModel3 {
 
@@ -11,20 +12,19 @@ public class LoginFormCompModel3 {
     private By emailSel = AppiumBy.accessibilityId("input-email");
 
     private By androidInvalidEmailMsgSel = AppiumBy.xpath("//android.widget.TextView[@text=\"Please enter a valid email address\"]");
-    private By iosInvalidEmailMsgSel = AppiumBy.iOSNsPredicateString("value='Please enter a valid email address']");
+    private By iosInvalidEmailMsgSel = AppiumBy.iOSNsPredicateString("name == 'Please enter a valid email address'");
 
     private By passwordSel = AppiumBy.accessibilityId("input-password");
 
     private By androidInvalidPasswordMsgSel = AppiumBy.xpath("//android.widget.TextView[@text=\"Please enter at least 8 characters\"]");
-    private By iosInvalidPasswordMsgSel = AppiumBy.iOSNsPredicateString("value='Please enter at least 8 characters'");
-
+    private By iosInvalidPasswordMsgSel = AppiumBy.iOSNsPredicateString("name == 'Please enter at least 8 characters'");
     private By loginSel = AppiumBy.accessibilityId("button-LOGIN");
 
     private By androidAlertTitleSel = AppiumBy.id("com.wdiodemoapp:id/alert_title");
-    private By iosAlertTitleSel = AppiumBy.iOSNsPredicateString("value='Success'");
+    private By iosAlertTitleSel = AppiumBy.xpath("//*[@name='Success']");
 
     private By androidAlertMsgSel = AppiumBy.id("android:id/message");
-    private By iosAlertMsgSel = AppiumBy.iOSNsPredicateString("value='You are logged in!'");
+    private By iosAlertMsgSel = AppiumBy.iOSNsPredicateString("name == 'You are logged in!'");
 
     String platformName;
     public LoginFormCompModel3(AppiumDriver driver) {
@@ -34,7 +34,9 @@ public class LoginFormCompModel3 {
 
     @Step("Input email {email}")
     public LoginFormCompModel3 inputEmail(String email) {
-        driver.findElement(emailSel).sendKeys(email);
+        WebElement emailElement = driver.findElement(emailSel);
+        emailElement.clear();
+        emailElement.sendKeys(email);
         return this;
     }
 
