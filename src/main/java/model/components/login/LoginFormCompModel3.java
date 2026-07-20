@@ -15,7 +15,9 @@ public class LoginFormCompModel3 {
 
     private By passwordSel = AppiumBy.accessibilityId("input-password");
 
-    private By invalidPasswordMsgSel = AppiumBy.xpath("//android.widget.TextView[@text=\"Please enter at least 8 characters\"]");
+    private By androidInvalidPasswordMsgSel = AppiumBy.xpath("//android.widget.TextView[@text=\"Please enter at least 8 characters\"]");
+    private By iosInvalidPasswordMsgSel = AppiumBy.iOSNsPredicateString("value='Please enter at least 8 characters'");
+
     private By loginSel = AppiumBy.accessibilityId("button-LOGIN");
 
     private By androidAlertTitleSel = AppiumBy.id("com.wdiodemoapp:id/alert_title");
@@ -51,7 +53,11 @@ public class LoginFormCompModel3 {
     }
 
     public String getInvalidPasswordMessage(){
-        return driver.findElement(invalidPasswordMsgSel).getText();
+        if(platformName.equalsIgnoreCase("android")){
+            return driver.findElement(androidInvalidPasswordMsgSel).getText();
+        }else {
+            return driver.findElement(iosInvalidPasswordMsgSel).getText();
+        }
     }
 
     public LoginFormCompModel3 clickOnLoginBtn() {
