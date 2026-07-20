@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="IOS Regression">
+    <test name="Webview" >
+        <parameter name="platformName" value="ios" />
+        <parameter name="platformVersion" value="16.4" />
+        <parameter name="udid" value="${udid}" />
+        <parameter name="systemPort" value="8100" />
+        <classes>
+            <class name="tests.authentication.TestLogin"/>
+            <class name="tests.webview.HydridContext"/>
+            <class name="tests.swipe.SwipeHorizontal"/>
+        </classes>
+    </test>
+</suite>

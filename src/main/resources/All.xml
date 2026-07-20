@@ -1,13 +1,13 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="Regression" parallel="tests" thread-count="2">
+<suite name="Regression on both devices" parallel="tests" thread-count="2">
     <!--   <listeners>
            <listener class-name="retry.RetryListener"/>
        </listeners>
    -->
     <test name="Authentication">
         <parameter name="platformName" value="android"/>
-        <parameter name="udid" value="${udid}"/>
+        <parameter name="udid" value="${android_udid}"/>
         <parameter name="systemPort" value="7001"/>
         <classes>
             <class name="tests.authentication.TestLogin"/>
@@ -18,7 +18,7 @@
     <test name="Webview" >
         <parameter name="platformName" value="ios" />
         <parameter name="platformVersion" value="16.4" />
-        <parameter name="udid" value="${udid}" />
+        <parameter name="udid" value="${ios_udid}" />
         <parameter name="systemPort" value="8100" />
         <classes>
             <class name="tests.webview.HydridContext"/>

@@ -38,7 +38,7 @@ jobs:
         run: |
           mvn clean test \
             -DisRemote=false \
-            -DtestSuite=src/main/resources/Regression.xml \
+            -DtestSuite=src/main/resources/Android.xml \
             -Dudid=${{ vars.ANDROID_UDID }}
 
       - name: Upload allure results
