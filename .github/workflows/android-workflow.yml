@@ -31,8 +31,17 @@ jobs:
           fi
           echo "✅ Found $DEVICE_COUNT Android device(s)"
 
-      - name: Verify Appium
-        run: curl http://127.0.0.1:4723/status
+      - name: Start Appium
+        run: |
+          appium --allow-insecure chromedriver_autodownload > appium.log 2>&1 &
+
+      - name: Wait for Appium
+        run: |
+          for i in {1..30}; do
+            curl http://127.0.0.1:4723/status && exit 0
+            sleep 2
+          done
+          exit 1
 
       - name: Run Android Tests
         run: |
