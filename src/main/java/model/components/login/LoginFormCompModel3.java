@@ -10,18 +10,24 @@ public class LoginFormCompModel3 {
     private AppiumDriver driver;
     private By emailSel = AppiumBy.accessibilityId("input-email");
 
-    private By invalidEmailMsgSel = AppiumBy.xpath("//android.widget.TextView[@text=\"Please enter a valid email address\"]");
+    private By androidInvalidEmailMsgSel = AppiumBy.xpath("//android.widget.TextView[@text=\"Please enter a valid email address\"]");
+    private By iosInvalidEmailMsgSel = AppiumBy.iOSNsPredicateString("value='Please enter a valid email address']");
+
     private By passwordSel = AppiumBy.accessibilityId("input-password");
 
     private By invalidPasswordMsgSel = AppiumBy.xpath("//android.widget.TextView[@text=\"Please enter at least 8 characters\"]");
     private By loginSel = AppiumBy.accessibilityId("button-LOGIN");
 
-    private By alertTitleSel = AppiumBy.id("com.wdiodemoapp:id/alert_title");
+    private By androidAlertTitleSel = AppiumBy.id("com.wdiodemoapp:id/alert_title");
+    private By iosAlertTitleSel = AppiumBy.iOSNsPredicateString("value='Success'");
 
-    private By alertMsgSel = AppiumBy.id("android:id/message");
+    private By androidAlertMsgSel = AppiumBy.id("android:id/message");
+    private By iosAlertMsgSel = AppiumBy.iOSNsPredicateString("value='You are logged in!'");
 
+    String platformName;
     public LoginFormCompModel3(AppiumDriver driver) {
         this.driver = driver;
+        platformName = driver.getCapabilities().getPlatformName().name();
     }
 
     @Step("Input email {email}")
@@ -31,7 +37,11 @@ public class LoginFormCompModel3 {
     }
 
     public String getInvalidEmailMessage(){
-        return driver.findElement(invalidEmailMsgSel).getText();
+        if(platformName.equalsIgnoreCase("android")){
+            return driver.findElement(androidInvalidEmailMsgSel).getText();
+        }else{
+            return driver.findElement(iosInvalidEmailMsgSel).getText();
+        }
     }
 
     @Step("Input password {password}")
@@ -50,10 +60,18 @@ public class LoginFormCompModel3 {
     }
 
     public String getSuccessTitle(){
-        return driver.findElement(alertTitleSel).getText();
+        if(platformName.equalsIgnoreCase("android")){
+            return driver.findElement(androidAlertTitleSel).getText();
+        }else {
+            return driver.findElement(iosAlertTitleSel).getText();
+        }
     }
 
     public String getSuccessMessage(){
-        return driver.findElement(alertMsgSel).getText();
+        if(platformName.equalsIgnoreCase("android")){
+            return driver.findElement(androidAlertMsgSel).getText();
+        }else {
+            return driver.findElement(iosAlertMsgSel).getText();
+        }
     }
 }
