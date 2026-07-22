@@ -1,7 +1,7 @@
 name: iOS Native CI
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   ios-native:
@@ -40,8 +40,8 @@ jobs:
             -DtestSuite=src/main/resources/IOS.xml \
             -Dudid=${{ vars.IOS_UDID }}
 
-      - name: Upload allure results
+      - name: Upload ios allure results
         uses: actions/upload-artifact@v4
         with:
-          name: appium-allure-results
+          name: ios-allure-results
           path: target/allure-results

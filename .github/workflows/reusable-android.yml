@@ -1,7 +1,7 @@
 name: Android Native CI
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   android-native:
@@ -50,8 +50,8 @@ jobs:
             -DtestSuite=src/main/resources/Android.xml \
             -Dudid=${{ vars.ANDROID_UDID }}
 
-      - name: Upload allure results
+      - name: Upload android allure results
         uses: actions/upload-artifact@v4
         with:
-          name: appium-allure-results
+          name: android-allure-results
           path: target/allure-results

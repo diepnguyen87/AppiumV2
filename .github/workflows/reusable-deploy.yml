@@ -1,7 +1,7 @@
 name: Deploy Allure Report
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: write
@@ -19,10 +19,16 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Download Allure Results
+      - name: Download Android Results
         uses: actions/download-artifact@v4
         with:
-          name: appium-allure-results
+          name: android-allure-results
+          path: allure-results
+
+      - name: Download iOS Results
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-allure-results
           path: allure-results
 
       - name: Install Allure CLI

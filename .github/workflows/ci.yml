@@ -1,0 +1,25 @@
+name: Mobile CI
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  android:
+    name: Android Native CI
+    uses: ./.github/workflows/reusable-android.yml
+
+  ios:
+    name: iOS Native CI
+    uses: ./.github/workflows/reusable-ios.yml
+
+  deploy:
+    name: Deploy Allure Report
+    needs:
+      - android
+      - ios
+
+    uses: ./.github/workflows/reusable-deploy.yml
