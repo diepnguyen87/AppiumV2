@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"35db9ec9b77935a232b9d31b26931e31","name":"IOS Regression","statistic":{"failed":0,"broken":0,"skipped":0,"passed":6,"unknown":0,"total":6}},{"uid":"6510f975e2b27cff93e853a7267e6dac","name":"Android Regression","statistic":{"failed":0,"broken":0,"skipped":0,"passed":6,"unknown":0,"total":6}}]}
