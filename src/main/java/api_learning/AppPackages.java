@@ -4,5 +4,5 @@ public interface AppPackages {
 
     String SETTING = "com.android.settings";
     String WDIO = "com.wdiodemoapp";
-    String BUNDLEID = "org.wdiodemoapp";
+    String BUNDLEID_WDIO = "org.wdiodemoapp";
 }
